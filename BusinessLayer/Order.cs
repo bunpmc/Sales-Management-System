@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessLayer
+{
+    public class Order
+    {
+        public int OrderID { get; set; }
+        public int CustomerID { get; set; }
+        public string EmployeeID { get; set; }
+        public DateTime OrderDate { get; set; }
+
+        public override string ToString()
+        {
+            return OrderID + '\t' + CustomerID + '\t'
+                + EmployeeID + '\t' + OrderDate;
+        }
+    }
+}
