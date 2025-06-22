@@ -1,0 +1,71 @@
+﻿<Window x:Class="WpfApp.ProductManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="ProductManagement" Height="500" Width="850">
+    <Grid>
+        <ListView x:Name="lvProduct" Margin="0,0,0,303" SelectionChanged="lvProduct_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ProductID" DisplayMemberBinding="{Binding ProductID}" />
+                    <GridViewColumn Header="ProductName" DisplayMemberBinding="{Binding ProductName}" />
+                    <GridViewColumn Header="SupplierID" DisplayMemberBinding="{Binding SupplierID}" />
+                    <GridViewColumn Header="CategoryID" DisplayMemberBinding="{Binding CategoryID}" />
+                    <GridViewColumn Header="Quantity/Unit" DisplayMemberBinding="{Binding QuantityPerUnit}" />
+                    <GridViewColumn Header="Unit Price" DisplayMemberBinding="{Binding UnitPrice}" />
+                    <GridViewColumn Header="In Stock" DisplayMemberBinding="{Binding UnitsInStock}" />
+                    <GridViewColumn Header="On Order" DisplayMemberBinding="{Binding UnitsOnOrder}" />
+                    <GridViewColumn Header="Reorder Level" DisplayMemberBinding="{Binding ReorderLevel}" />
+                    <GridViewColumn Header="Discontinued" DisplayMemberBinding="{Binding Discontinued}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="Product Information" HorizontalAlignment="Left" Margin="31,286,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <!-- Labels & TextBoxes -->
+        <Label Content="ProductID:" Margin="28,320,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtProductID" Margin="128,324,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="ProductName:" Margin="28,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtProductName" Margin="128,354,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="SupplierID:" Margin="28,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSupplierID" Margin="128,384,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="CategoryID:" Margin="28,410,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCategoryID" Margin="128,414,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="Quantity/Unit:" Margin="28,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtQuantityPerUnit" Margin="128,444,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="Unit Price:" Margin="278,320,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUnitPrice" Margin="378,324,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="In Stock:" Margin="278,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUnitsInStock" Margin="378,354,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="On Order:" Margin="278,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUnitsOnOrder" Margin="378,384,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="Reorder Level:" Margin="278,410,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtReorderLevel" Margin="378,414,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Label Content="Discontinued:" Margin="278,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkDiscontinued" Margin="378,444,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <!-- Buttons -->
+        <Button x:Name="btnAddProduct" Content="Add Product" Margin="538,324,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddProduct_Click"/>
+        <Button x:Name="btnUpdateProduct" Content="Update Product" Margin="538,354,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnUpdateProduct_Click"/>
+        <Button x:Name="btnRemoveProduct" Content="Remove Product" Margin="538,384,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnRemoveProduct_Click"/>
+
+        <!-- Search Section -->
+        <Label Content="ProductID:" Margin="32,237,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSearchProductID" Margin="112,241,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnSearchProduct" Content="Search" Margin="242,239,0,0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSearchProduct_Click"/>
+        <Label Content="Search Product" HorizontalAlignment="Left" Margin="32,211,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+    </Grid>
+</Window>

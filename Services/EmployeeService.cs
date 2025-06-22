@@ -11,6 +11,7 @@ namespace Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository iemployeeRepository;
+        private bool isGenerated = false;
 
         public EmployeeService()
         {
@@ -24,7 +25,12 @@ namespace Services
 
         public List<Employee> GenerateSampleDataset()
         {
-            return iemployeeRepository.GenerateSampleDataset();
+            if (!isGenerated)
+            {
+                isGenerated = true;
+                return iemployeeRepository.GenerateSampleDataset();
+            }
+            return GetEmployees();
         }
 
         public List<Employee> GetEmployees()

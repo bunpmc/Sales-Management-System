@@ -8,9 +8,12 @@ namespace DataLayer
     public class CustomerDAO
     {
         static List<Customer> customers = new List<Customer>();
-
+        private bool isGenerated = false;
         public List<Customer> GenerateSampleDataset()
         {
+            if(isGenerated) {
+                return customers;
+            }
 
             customers.Add(new Customer()
             {
@@ -61,7 +64,7 @@ namespace DataLayer
                 Address = "89 Duong E, Quan Binh Thanh",
                 Phone = "0944556677"
             });
-
+            isGenerated = true;
             return customers;
         }
 

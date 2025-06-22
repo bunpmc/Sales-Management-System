@@ -8,9 +8,12 @@ namespace DataLayer
     public class OrderDetailDAO
     {
         static List<OrderDetail> orderDetails = new List<OrderDetail>();
+        private bool isGenerated = false;
         public List<OrderDetail> GenerateSampleDataset()
         {
-            orderDetails.Clear();
+            if (isGenerated) {
+                return orderDetails;
+            }
 
             orderDetails.Add(new OrderDetail()
             {
@@ -56,7 +59,7 @@ namespace DataLayer
                 Quantity = 1,
                 Discount = 0.0
             });
-
+            isGenerated = true;
             return orderDetails;
         }
         public List<OrderDetail> GetOrderDetails()

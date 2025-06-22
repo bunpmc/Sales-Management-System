@@ -8,8 +8,12 @@ namespace DataLayer
     public class EmployeeDAO
     {
         static List<Employee> employees = new List<Employee>();
+        private bool isGenerated = false;
         public List<Employee> GenerateSampleDataset()
         {
+            if (isGenerated) {
+                return employees;
+            }
             employees.Add(new Employee()
             {
                 EmployeeID = 1,
@@ -69,7 +73,7 @@ namespace DataLayer
                 HireDate = new DateTime(2019, 2, 10),
                 Address = "89 Duong E, Binh Thanh"
             });
-
+            isGenerated = true;
             return employees;
         }
 

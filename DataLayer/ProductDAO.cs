@@ -10,9 +10,13 @@ namespace DataLayer
     public class ProductDAO
     {
         static List<Product> products = new List<Product>();
-
+        private bool isGenerated = false;
         public List<Product> GenerateSampleDataset()
         {
+            if (isGenerated) {
+                return products;
+            }
+
             products.Add(new Product()
             {
                 ProductID = 1,
@@ -83,6 +87,7 @@ namespace DataLayer
                 Discontinued = true
             });
 
+            isGenerated = true;
             return products;
 
         }

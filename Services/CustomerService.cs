@@ -11,7 +11,6 @@ namespace Services
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository icustomerRepository;
-
         public CustomerService ()
         {
             icustomerRepository = new CustomerRepository ();

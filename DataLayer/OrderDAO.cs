@@ -8,9 +8,10 @@ namespace DataLayer
     public class OrderDAO
     {
         static List<Order> orders = new List<Order>();
+        private bool isGenerated = false;
         public List<Order> GenerateSampleDataset()
         {
-            orders.Clear();
+            if(isGenerated) return orders;
 
             orders.Add(new Order()
             {
@@ -51,7 +52,7 @@ namespace DataLayer
                 EmployeeID = "5",
                 OrderDate = new DateTime(2025, 2, 14)
             });
-
+            isGenerated = true;
             return orders;
         }
         public List<Order> GetOrders()

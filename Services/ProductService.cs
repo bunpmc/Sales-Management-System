@@ -24,7 +24,8 @@ namespace Services
 
         public List<Product> GenerateSampleDataset()
         {
-            return iproductRepository.GenerateSampleDataset();
+
+                return iproductRepository.GenerateSampleDataset();
         }
 
         public List<Product> GetProducts()

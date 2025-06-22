@@ -11,9 +11,12 @@ namespace DataLayer
     {
         
         static List<Category> categories = new List<Category>();
-
+        private bool isGenerated = false;
         public List<Category> GenerateSampleDataset()
             {
+            if (isGenerated) {
+                return categories;
+            }
 
                 categories.Add(new Category()
                 {
@@ -49,7 +52,7 @@ namespace DataLayer
                     CategoryName = "Ngu coc",
                     Description = "Banh mi, mi, com, ngu coc an lien"
                 });
-
+                isGenerated = true;
                 return categories;
             }
 
