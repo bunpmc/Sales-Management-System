@@ -21,11 +21,11 @@ namespace WpfApp
     /// </summary>
     public partial class EmployeeLogin : Window
     {
-        private List<Employee> employees = new List<Employee>();
+        EmployeeService employeeService = new EmployeeService();
+        List<Employee> employees = new List<Employee>();
         public EmployeeLogin()
         {
             InitializeComponent();
-            EmployeeService employeeService = new EmployeeService();
             employeeService.GenerateSampleDataset();
             employees = employeeService.GetEmployees();
         }

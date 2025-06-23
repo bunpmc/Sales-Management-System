@@ -15,7 +15,7 @@
             <RowDefinition Height="327*"/>
             <RowDefinition Height="157*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="lvProduct" Margin="0,0,0,146" SelectionChanged="lvProduct_SelectionChanged" Grid.ColumnSpan="2">
+        <ListView x:Name="lvProduct" Margin="0,0,0,146" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ProductID" DisplayMemberBinding="{Binding ProductID}" />
