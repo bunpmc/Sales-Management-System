@@ -4,7 +4,7 @@
         Title="OrderProcessing" Height="600" Width="900">
     <Grid Margin="10">
         <GroupBox Header="Orders" Height="200" VerticalAlignment="Top">
-            <ListView x:Name="lvOrder" SelectionMode="Single" Margin="0" SelectionChanged="lvOrder_SelectionChanged" IsSynchronizedWithCurrentItem="True">
+            <ListView x:Name="lvOrder" SelectionMode="Single" Margin="0" IsSynchronizedWithCurrentItem="True">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrderID}" Width="80"/>

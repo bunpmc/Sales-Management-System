@@ -37,19 +37,6 @@ namespace WpfApp
             lvCustomer.ItemsSource = cs.GetCustomers();
         }
 
-        private Customer CreateCustomerFromForm()
-        {
-            return new Customer
-            {
-                CustomerID = int.Parse(txtCustomerID.Text),
-                CompanyName = txtCompany.Text,
-                Address = txtAddress.Text,
-                Phone = txtPhone.Text,
-                ContactName = txtContactName.Text,
-                ContactTitle = txtContactTitle.Text,
-            };
-        }
-
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             int id = int.Parse(txtCustomerID_Search.Text);
@@ -65,91 +52,39 @@ namespace WpfApp
             }
         }
 
-        private void lvCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvCustomer.SelectedItem is Customer selectedCustomer) {
-                txtCustomerID.Text = selectedCustomer.CustomerID.ToString();
-                txtContactName.Text = selectedCustomer.ContactName.ToString();
-                txtCompany.Text = selectedCustomer.CompanyName.ToString();
-                txtAddress.Text = selectedCustomer.Address.ToString();
-                txtPhone.Text = selectedCustomer.Phone.ToString();
-                txtContactTitle.Text = selectedCustomer.ContactTitle.ToString();
-            }
-        }
-
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if(txtCustomerID == null || txtContactTitle == null
-                || txtContactName == null || txtCompany == null ||
-                txtAddress == null || txtPhone == null)
+            AddCustomerDialog addCustomerDialog = new AddCustomerDialog();
+            if (addCustomerDialog.ShowDialog() == true)
             {
-                MessageBox.Show("Hay nhap du lieu de them"); return;
-            }
-
-            if (!iv.isPhoneValidation(txtPhone.Text)) {
-                MessageBox.Show("Sai format so dien thoai, hay nhap nhu vi du sau:\n+84901234567\r\n\r\n84901234567\r\n\r\n0901234567");
-                return;
-            }
-
-            try
-            {
-                Customer customer = CreateCustomerFromForm();
-
-                bool isSuccess = cs.AddCustomer(customer);
-
-                if (isSuccess)
-                {
-                    DisplayCustomer();
-                }
-                else
-                {
-                    MessageBox.Show("Loi them khach hang");
-                }
-            }catch
-            {
-                MessageBox.Show("Khong the them khach hang vui long kiem tra thong tin");
+                DisplayCustomer();
             }
         }
 
         private void btnRemoveCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if(txtCustomerID == null )
+            if(lvCustomer.SelectedItem is not Customer customer)
             {
                 MessageBox.Show("Please select a customer on the list"); 
                 return;
             }
+
+            cs.RemoveCustomer(customer.CustomerID);
         }
 
         private void btnUpdateCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (txtCustomerID == null || txtContactTitle == null
-                || txtContactName == null || txtCompany == null ||
-                txtAddress == null || txtPhone == null)
+            if (lvCustomer.SelectedItem is Customer selectedCustomer)
             {
-                MessageBox.Show("Hay nhap du lieu de chinh sua"); return;
-            }
-
-            if(!iv.isPhoneValidation(txtPhone.Text))
-            {
-                MessageBox.Show("Sai format so dien thoai, hay nhap nhu vi du sau:\n+84901234567\r\n\r\n84901234567\r\n\r\n0901234567");
-                return;
-            }
-            try
-            {
-                Customer customer = CreateCustomerFromForm();
-                bool isSucess = cs.UpdateCustomer(customer);
-
-                if (isSucess) {
-                    DisplayCustomer();
-                } else
+                UpdateCustomerDialog customerDialog = new UpdateCustomerDialog(selectedCustomer);
+                if (customerDialog.ShowDialog() == true)
                 {
-                    MessageBox.Show("Khong the cap nhat thong tin khach hang");
+                    DisplayCustomer();
                 }
-            }catch
+            } else
             {
-                MessageBox.Show("Loi khi cap nhat thong tin khach hang");
-                
-            }            
+                MessageBox.Show("Chon 1 khach hang de update");
+            }
         }
     }
 }

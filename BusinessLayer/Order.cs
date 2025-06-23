@@ -10,13 +10,7 @@ namespace BusinessLayer
     {
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
-        public string EmployeeID { get; set; }
+        public int EmployeeID { get; set; }
         public DateTime OrderDate { get; set; }
-
-        public override string ToString()
-        {
-            return OrderID + '\t' + CustomerID + '\t'
-                + EmployeeID + '\t' + OrderDate;
-        }
     }
 }

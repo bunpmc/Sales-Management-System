@@ -12,7 +12,8 @@ namespace WpfApp
     /// </summary>
     public partial class ProductManagement : Window
     {
-        private ProductService ps = new ProductService(); // Service xử lý logic
+        private ProductService ps = new ProductService();
+        private InputValidator iv = new InputValidator();
         public ProductManagement()
         {
             InitializeComponent();
@@ -26,81 +27,41 @@ namespace WpfApp
             lvProduct.ItemsSource = ps.GetProducts();
         }
 
-        private Product CreateProductFromForm()
-        {
-            return new Product
-            {
-                ProductID = int.Parse(txtProductID.Text),
-                ProductName = txtProductName.Text,
-                SupplierID = int.Parse(txtSupplierID.Text),
-                CategoryID = int.Parse(txtCategoryID.Text),
-                QuantityPerUnit = int.Parse(txtQuantityPerUnit.Text),
-                UnitPrice = double.Parse(txtUnitPrice.Text),
-                UnitsInStock = int.Parse(txtUnitsInStock.Text),
-                UnitsOnOrder = int.Parse(txtUnitsOnOrder.Text),
-                ReorderLevel = int.Parse(txtReorderLevel.Text),
-                Discontinued = chkDiscontinued.IsChecked ?? false
-            };
-        }
-
-        private void lvProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvProduct.SelectedItem is Product selectedProduct)
-            {
-                txtProductID.Text = selectedProduct.ProductID.ToString();
-                txtProductName.Text = selectedProduct.ProductName;
-                txtSupplierID.Text = selectedProduct.SupplierID.ToString();
-                txtCategoryID.Text = selectedProduct.CategoryID.ToString();
-                txtQuantityPerUnit.Text = selectedProduct.QuantityPerUnit.ToString();
-                txtUnitPrice.Text = selectedProduct.UnitPrice.ToString("F2");
-                txtUnitsInStock.Text = selectedProduct.UnitsInStock.ToString();
-                txtUnitsOnOrder.Text = selectedProduct.UnitsOnOrder.ToString();
-                txtReorderLevel.Text = selectedProduct.ReorderLevel.ToString();
-                chkDiscontinued.IsChecked = selectedProduct.Discontinued;
-            }
-        }
+        
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtProductID.Text) ||
-                string.IsNullOrWhiteSpace(txtProductName.Text))
-            {
-                MessageBox.Show("Hãy nhập đầy đủ thông tin sản phẩm.");
-                return;
-            }
 
-            try
+            AddProductDialog addProductDialog = new AddProductDialog();
+            if(addProductDialog.ShowDialog() == true)
             {
-                Product product = CreateProductFromForm();
-                bool isSuccess = ps.AddProduct(product);
-
-                if (isSuccess)
-                {
-                    DisplayProducts();
-                }
-                else
-                {
-                    MessageBox.Show("Không thể thêm sản phẩm. Có thể trùng ID.");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Lỗi khi thêm sản phẩm. Vui lòng kiểm tra dữ liệu nhập vào.");
+                DisplayProducts();
             }
         }
 
         private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtProductID.Text))
-            {
-                MessageBox.Show("Hãy chọn sản phẩm để cập nhật.");
-                return;
-            }
+            if (lvProduct.SelectedItem is Product product) {
+                UpdateProductDialog updateProductDialog = new UpdateProductDialog(product);
 
-            try
+                if (updateProductDialog.ShowDialog() == true)
+                {
+                    DisplayProducts();
+                }
+            }
+        }
+
+        private void btnRemoveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvProduct.SelectedItem is Product selectedProduct)
             {
-                Product product = CreateProductFromForm();
-                bool isSuccess = ps.UpdateProduct(product);
+                if (selectedProduct == null)
+                {
+                    MessageBox.Show("Hãy chọn một sản phẩm để xóa.");
+                    return;
+                }
+
+                bool isSuccess = ps.RemoveProduct(selectedProduct.ProductID);
 
                 if (isSuccess)
                 {
@@ -108,32 +69,8 @@ namespace WpfApp
                 }
                 else
                 {
-                    MessageBox.Show("Không thể cập nhật sản phẩm.");
+                    MessageBox.Show("Không thể xóa sản phẩm.");
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Lỗi khi cập nhật sản phẩm.");
-            }
-        }
-
-        private void btnRemoveProduct_Click(object sender, RoutedEventArgs e)
-        {
-            if (!int.TryParse(txtProductID.Text, out int productId))
-            {
-                MessageBox.Show("Hãy chọn một sản phẩm để xóa.");
-                return;
-            }
-
-            bool isSuccess = ps.RemoveProduct(productId);
-
-            if (isSuccess)
-            {
-                DisplayProducts();
-            }
-            else
-            {
-                MessageBox.Show("Không thể xóa sản phẩm.");
             }
         }
 

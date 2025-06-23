@@ -37,12 +37,12 @@ namespace WpfApp
 
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            if(lvOrder.SelectedItem is Order selectedOrder)
+            OrderDialog addOrderDialog = new OrderDialog();
+            if (addOrderDialog.ShowDialog() == true)
             {
-                OrderDialog orderDialog = new OrderDialog();
-                orderDialog.ShowDialog();
+                DisplayOrders();
             }
-            
+
         }
 
         private void btnUpdateOrder_Click(object sender, RoutedEventArgs e)
@@ -50,10 +50,41 @@ namespace WpfApp
             if (lvOrder.SelectedItem is Order selectedOrder)
             {
                 OrderUpdateDialog orderDialog = new OrderUpdateDialog(selectedOrder);
-                orderDialog.ShowDialog();
+                if(orderDialog.ShowDialog() == true)
+                {
+                    DisplayOrders();
+                }
             }
 
         }
 
+        private void btnRemoveOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (lvOrder.SelectedItem is not Order order)
+            {
+                MessageBox.Show("Please select an order on the list");
+                return;
+            }
+
+            os.RemoveOrder(order.OrderID);
+        }
+
+        private void btnSearchOrder_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(txtSearchOrderID.Text);
+
+            Order order = os.SearchOrder(id);
+
+            if (order != null)
+            {
+                lvOrder.ItemsSource = null;
+                lvOrder.ItemsSource = new List<Order> { order };
+            }
+            else
+            {
+                MessageBox.Show($"No Order with {id} found");
+            }
+        }
     }
 }

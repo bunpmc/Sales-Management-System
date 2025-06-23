@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace WpfApp
     public partial class OrderDialog : Window
     {
         private OrderService os = new OrderService();
+        private InputValidator iv = new InputValidator();
         public OrderDialog()
         {
             InitializeComponent();
@@ -29,36 +31,50 @@ namespace WpfApp
 
         private Order CreateOrderFromForm()
         {
+            int cid = int.Parse(txtCustomerID.Text);
+            int eid = int.Parse(txtEmployeeID.Text);
+            int oid = int.Parse(txtOrderID.Text);
+
+            if (iv.IsCustomerIDExist(cid) || !iv.IsEmployeeIDExist(eid) || !iv.IsOrderIDExist(oid))
+            {
+                return null;
+            }
+
             return new Order
             {
                 OrderID = int.Parse(txtOrderID.Text),
                 CustomerID = int.Parse(txtCustomerID.Text),
-                EmployeeID = txtEmployeeID.Text,
+                EmployeeID = int.Parse(txtEmployeeID.Text),
                 OrderDate = dpOrderDate.SelectedDate ?? DateTime.Now
             };
         }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Order order = CreateOrderFromForm();
-
-                bool isSuccess = os.AddOrder(order);
-
-                if(isSuccess)
+                if (order == null)
                 {
-                    MessageBox.Show("Them don hang thanh cong");
-                    OrderProcessing op = new OrderProcessing();
-                    op.Show();
-                } else
-                {
-                    MessageBox.Show("Them don hang that bai");
+                    MessageBox.Show("Thong tin nhap khong hop le");
+                    return;
                 }
-                
+                bool isSuccess = os.AddOrder(order);
+                if (isSuccess)
+                {
+                    DialogResult = true;
+                    Close();
+                }
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+            catch
+            {
+                MessageBox.Show("Khong the them don hang vui long kiem tra thong tin");
             }
         }
     }

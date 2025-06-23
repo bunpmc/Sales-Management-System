@@ -17,7 +17,7 @@ namespace DataLayer
             {
                 OrderID = 1,
                 CustomerID = 1,
-                EmployeeID = "1",
+                EmployeeID = 1,
                 OrderDate = new DateTime(2024, 12, 10)
             });
 
@@ -25,7 +25,7 @@ namespace DataLayer
             {
                 OrderID = 2,
                 CustomerID = 2,
-                EmployeeID = "2",
+                EmployeeID = 2,
                 OrderDate = new DateTime(2024, 12, 15)
             });
 
@@ -33,7 +33,7 @@ namespace DataLayer
             {
                 OrderID = 3,
                 CustomerID = 3,
-                EmployeeID = "3",
+                EmployeeID = 3,
                 OrderDate = new DateTime(2025, 1, 5)
             });
 
@@ -41,7 +41,7 @@ namespace DataLayer
             {
                 OrderID = 4,
                 CustomerID = 4,
-                EmployeeID = "4",
+                EmployeeID = 4,
                 OrderDate = new DateTime(2025, 1, 20)
             });
 
@@ -49,7 +49,7 @@ namespace DataLayer
             {
                 OrderID = 5,
                 CustomerID = 5,
-                EmployeeID = "5",
+                EmployeeID = 5,
                 OrderDate = new DateTime(2025, 2, 14)
             });
             isGenerated = true;

@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Title="ProductManagement" Height="500" Width="850">
     <Grid>
-        <ListView x:Name="lvProduct" Margin="0,0,0,303" SelectionChanged="lvProduct_SelectionChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="791*"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="327*"/>
+            <RowDefinition Height="157*"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="lvProduct" Margin="0,0,0,146" SelectionChanged="lvProduct_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ProductID" DisplayMemberBinding="{Binding ProductID}" />
@@ -24,45 +32,12 @@
             </ListView.View>
         </ListView>
 
-        <Label Content="Product Information" HorizontalAlignment="Left" Margin="31,286,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Product Information" HorizontalAlignment="Left" Margin="383,210,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <!-- Labels & TextBoxes -->
-        <Label Content="ProductID:" Margin="28,320,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtProductID" Margin="128,324,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnAddProduct" Content="Add Product" Margin="399,241,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddProduct_Click"/>
+        <Button x:Name="btnUpdateProduct" Content="Update Product" Margin="538,241,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnUpdateProduct_Click"/>
+        <Button x:Name="btnRemoveProduct" Content="Remove Product" Margin="680,240,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnRemoveProduct_Click"/>
 
-        <Label Content="ProductName:" Margin="28,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtProductName" Margin="128,354,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="SupplierID:" Margin="28,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtSupplierID" Margin="128,384,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="CategoryID:" Margin="28,410,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCategoryID" Margin="128,414,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="Quantity/Unit:" Margin="28,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtQuantityPerUnit" Margin="128,444,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="Unit Price:" Margin="278,320,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtUnitPrice" Margin="378,324,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="In Stock:" Margin="278,350,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtUnitsInStock" Margin="378,354,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="On Order:" Margin="278,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtUnitsOnOrder" Margin="378,384,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="Reorder Level:" Margin="278,410,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtReorderLevel" Margin="378,414,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <Label Content="Discontinued:" Margin="278,440,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkDiscontinued" Margin="378,444,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-        <!-- Buttons -->
-        <Button x:Name="btnAddProduct" Content="Add Product" Margin="538,324,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAddProduct_Click"/>
-        <Button x:Name="btnUpdateProduct" Content="Update Product" Margin="538,354,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnUpdateProduct_Click"/>
-        <Button x:Name="btnRemoveProduct" Content="Remove Product" Margin="538,384,0,0" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnRemoveProduct_Click"/>
-
-        <!-- Search Section -->
         <Label Content="ProductID:" Margin="32,237,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBox x:Name="txtSearchProductID" Margin="112,241,0,0" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="btnSearchProduct" Content="Search" Margin="242,239,0,0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSearchProduct_Click"/>
