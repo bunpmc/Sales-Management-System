@@ -67,7 +67,22 @@ namespace WpfApp
                 return;
             }
 
-            os.RemoveOrder(order.OrderID);
+            MessageBoxResult mbr = MessageBox.Show("Ban muon xoa don hang?", "Xac nhan xoa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (mbr == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            bool isSuccess = os.RemoveOrder(order.OrderID);
+
+            if (isSuccess)
+            {
+                DisplayOrders();
+            }
+            else
+            {
+                MessageBox.Show("Khong the xoa don hang");
+            }
         }
 
         private void btnSearchOrder_Click(object sender, RoutedEventArgs e)

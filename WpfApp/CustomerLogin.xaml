@@ -13,7 +13,7 @@
         <Label Content="Phone:" HorizontalAlignment="Left" Margin="275,0,0,0" VerticalAlignment="Center" FontSize="18" Height="32" Width="134"/>
         <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Margin="353,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="18" Height="25"/>
         <Button x:Name="btnCustomerLogin" Content="Login" HorizontalAlignment="Left" Margin="316,263,0,0" VerticalAlignment="Top" Height="25" Width="74" Click="btnCustomerLogin_Click"/>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="413,263,0,0" VerticalAlignment="Top" Height="25" Width="74" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Content="Logout" HorizontalAlignment="Left" Margin="413,263,0,0" VerticalAlignment="Top" Height="25" Width="74" Click="btnExit_Click"/>
 
     </Grid>
 </Window>

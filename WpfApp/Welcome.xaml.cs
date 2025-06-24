@@ -28,6 +28,7 @@ namespace WpfApp
         {
             CustomerLogin cl = new CustomerLogin();
             cl.Show();
+            Close();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -39,6 +40,7 @@ namespace WpfApp
         {
             EmployeeLogin el = new EmployeeLogin();
             el.Show();
+            Close();
         }
     }
 }

@@ -73,6 +73,7 @@ namespace WpfApp
         {
             CustomerLogin cl = new CustomerLogin();
             cl.Show();
+            Close();
         }
     }
 }

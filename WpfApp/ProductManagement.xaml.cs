@@ -53,11 +53,16 @@ namespace WpfApp
 
         private void btnRemoveProduct_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult mbr = MessageBox.Show("Ban muon xoa san pham?", "Xac nhan xoa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (mbr == MessageBoxResult.No)
+            {
+                return;
+            }
             if (lvProduct.SelectedItem is Product selectedProduct)
             {
                 if (selectedProduct == null)
                 {
-                    MessageBox.Show("Hãy chọn một sản phẩm để xóa.");
+                    MessageBox.Show("Hay chon mot san pham de xoa");
                     return;
                 }
 
@@ -69,7 +74,7 @@ namespace WpfApp
                 }
                 else
                 {
-                    MessageBox.Show("Không thể xóa sản phẩm.");
+                    MessageBox.Show("Khong the xoa san pham");
                 }
             }
         }

@@ -25,17 +25,20 @@ namespace WpfApp
         {
             CustomerManagement cm = new CustomerManagement();
             cm.Show();
+            Close();
         }
 
         private void btnProductManagement_Click(object sender, RoutedEventArgs e)
         {
             ProductManagement pm = new ProductManagement();
             pm.Show();
+            Close();
         }
         private void btnOrderProcessing_Click(object sender, RoutedEventArgs e)
         {
             OrderProcessing op = new OrderProcessing();
             op.Show();
+            Close();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

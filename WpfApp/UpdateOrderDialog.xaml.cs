@@ -68,7 +68,7 @@ namespace WpfApp
                 }
             } catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.Message);
             }
             
         }

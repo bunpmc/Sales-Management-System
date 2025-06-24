@@ -43,6 +43,7 @@ namespace WpfApp
             if (c != null) {
                 CustomerMainForm cmf = new CustomerMainForm(c);
                 cmf.Show();
+                Close();
             }else
             {
                 MessageBox.Show("So dien thoai dang nhap sai hoac khong ton tai");
@@ -52,8 +53,15 @@ namespace WpfApp
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult mbr = MessageBox.Show("Ban muon dang xuat?", "Xac nhan dang xuat", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (mbr == MessageBoxResult.No)
+            {
+                return;
+            }
+
             Welcome w = new Welcome();
             w.Show();
+            Close();
         }
     }
 }

@@ -27,10 +27,10 @@ namespace WpfApp
         public CustomerManagement()
         {
             InitializeComponent();
-            DisplayCustomer();
+            DisplayCustomers();
         }
 
-        private void DisplayCustomer()
+        private void DisplayCustomers()
         {
             cs.GenerateSampleDataset();
             lvCustomer.ItemsSource = null;
@@ -48,7 +48,7 @@ namespace WpfApp
                 lvCustomer.ItemsSource = new List<Customer> { customer};
             } else
             {
-                MessageBox.Show($"No Customer with {id} found");
+                MessageBox.Show($"Khong tim thay khach hang voi {id}");
             }
         }
 
@@ -57,7 +57,7 @@ namespace WpfApp
             AddCustomerDialog addCustomerDialog = new AddCustomerDialog();
             if (addCustomerDialog.ShowDialog() == true)
             {
-                DisplayCustomer();
+                DisplayCustomers();
             }
         }
 
@@ -65,11 +65,26 @@ namespace WpfApp
         {
             if(lvCustomer.SelectedItem is not Customer customer)
             {
-                MessageBox.Show("Please select a customer on the list"); 
+                MessageBox.Show("Chon mot khach hang de xoa"); 
                 return;
             }
 
-            cs.RemoveCustomer(customer.CustomerID);
+            MessageBoxResult mbr = MessageBox.Show("Ban muon xoa khach hang?", "Xac nhan xoa", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (mbr == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            bool isSuccess = cs.RemoveCustomer(customer.CustomerID);
+
+            if (isSuccess)
+            {
+                DisplayCustomers();
+            }
+            else
+            {
+                MessageBox.Show("Khong the xoa khach hang");
+            }
         }
 
         private void btnUpdateCustomer_Click(object sender, RoutedEventArgs e)
@@ -79,7 +94,7 @@ namespace WpfApp
                 UpdateCustomerDialog customerDialog = new UpdateCustomerDialog(selectedCustomer);
                 if (customerDialog.ShowDialog() == true)
                 {
-                    DisplayCustomer();
+                    DisplayCustomers();
                 }
             } else
             {

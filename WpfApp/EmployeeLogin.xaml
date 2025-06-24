@@ -14,7 +14,7 @@
         <Label Content="Password:" HorizontalAlignment="Left" Margin="275,233,0,0" VerticalAlignment="Top" FontSize="18" Height="33" Width="125"/>
         <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="384,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="18" Height="25"/>
         <Button x:Name="btnEmployeeLogin" Content="Login" HorizontalAlignment="Left" Margin="303,300,0,0" VerticalAlignment="Top" Height="25" Width="74" Click="btnEmployeeLogin_Click"/>
-        <Button x:Name="btnExit" Content="Exit to Welcome Screen" HorizontalAlignment="Left" Margin="400,300,0,0" VerticalAlignment="Top" Height="25" Width="133" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Content="Logout" HorizontalAlignment="Left" Margin="400,300,0,0" VerticalAlignment="Top" Height="25" Width="133" Click="btnExit_Click"/>
         <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="384,241,0,0" VerticalAlignment="Top" Width="170" Height="25"/>
 
     </Grid>
