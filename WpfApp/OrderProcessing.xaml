@@ -27,5 +27,6 @@
             <TextBox x:Name="txtSearchOrderID" Width="120" Margin="5,0" Height="24"/>
             <Button x:Name="btnSearch" Content="Search" Width="80" Click="btnSearchOrder_Click" Height="24"/>
         </StackPanel>
+        <Button x:Name="btnReport" Content="Reports" HorizontalAlignment="Left" Margin="10,282,0,0" VerticalAlignment="Top" Height="42" Width="99" Click="btnReport_Click"/>
     </Grid>
 </Window>

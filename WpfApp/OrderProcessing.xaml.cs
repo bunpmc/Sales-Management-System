@@ -101,5 +101,12 @@ namespace WpfApp
                 MessageBox.Show($"No Order with {id} found");
             }
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            ReportsWindow op = new ReportsWindow();
+            op.Show();
+            Close();
+        }
     }
 }
